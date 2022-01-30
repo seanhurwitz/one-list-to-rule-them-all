@@ -54,14 +54,24 @@ const ListItem = styled.div`
   grid-gap: 0.3rem;
 `;
 
+const ItemInput = styled.input`
+  border: 1px solid ${({ theme }) => theme.color};
+  color: ${({ theme }) => theme.color};
+  padding: 0.7rem;
+  border-radius: 5px;
+  margin-bottom: 0.3rem;
+  width: 100%;
+  background: none;
+  :focus-visible {
+    outline: none;
+  }
+`;
+
 const NewItem = styled.div`
   border: 1px solid ${({ theme }) => theme.color};
   padding: 0.7rem;
   border-radius: 5px;
-  margin-bottom: 0.3rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-gap: 0.3rem;
+  background: ${({ theme }) => theme.newItemBackground};
 `;
 
 const ListItemText = styled.div`
@@ -94,4 +104,5 @@ export {
   Delete,
   ListItemText,
   NewItem,
+  ItemInput,
 };

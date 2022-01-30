@@ -6,6 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import { localStorageKeys } from "./config";
+import ItemInput from "./ItemInput";
 import { Delete, List, ListItem, ListItemText, NewItem } from "./styles";
 
 interface ListProps {
@@ -21,6 +22,8 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
     localStorage.setItem(localStorageKeys.LIST, JSON.stringify(list));
   }, [list]);
   const [activeElement, setActiveElement] = useState(-1);
+  const [addNewItem, setAddNewItem] = useState(false);
+  const completeNewItem = () => setAddNewItem(false);
   return (
     <List>
       {list.map((listItem, itemIndex) => {
@@ -40,7 +43,11 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
           </ListItem>
         );
       })}
-      <NewItem>lol</NewItem>
+      {addNewItem ? (
+        <ItemInput setList={setList} complete={completeNewItem} />
+      ) : (
+        <NewItem onClick={() => setAddNewItem(true)}>Add New Item...</NewItem>
+      )}
     </List>
   );
 };

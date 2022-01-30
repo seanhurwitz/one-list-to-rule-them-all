@@ -14,6 +14,7 @@ const lightTheme: ThemeSchema = {
   boxShadow: `rgba(0, 0, 0, 0.22) 0px 6px 24px 0px,
   rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;`,
   explosionColors: ["#414141", "#7b7b7b", "#a5a5a5"],
+  newItemBackground: "#00000024",
 };
 
 const darkTheme: ThemeSchema = {
@@ -22,6 +23,7 @@ const darkTheme: ThemeSchema = {
   boxShadow: `rgba(255, 255, 255, 0.268) 0px 6px 24px 0px,
   rgba(255, 255, 255, 0.08) 0px 0px 0px 1px;`,
   explosionColors: ["#ffffff", "#f1ffd1", "#b0ff32"],
+  newItemBackground: "#ffffff23",
 };
 
 interface ThemeSchema {
@@ -29,6 +31,7 @@ interface ThemeSchema {
   background: string;
   boxShadow: string;
   explosionColors: string[];
+  newItemBackground: string;
 }
 interface ThemeInterface {
   isLightMode: boolean;
