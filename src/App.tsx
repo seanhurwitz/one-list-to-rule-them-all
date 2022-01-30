@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Container, Header, List, ListContainer } from "./styles";
+import { useTheme } from "./context";
 
 function App() {
+  const { toggleLightMode } = useTheme();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <Container>
+      <ListContainer>
+        <Header>
+          <h1>One List To Rule Them All</h1>
+          <div onClick={toggleLightMode}>lol</div>
+        </Header>
         <p>
-          Edit <code>src/App.tsx</code> and save to reload.
+          A lightweight, no-nonsense, uncomplicated, unordered, local-storaged
+          todo list. One list. Have you done your stuff or not? Nothing else
+          matters.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <List>lol</List>
+      </ListContainer>
+    </Container>
   );
 }
 
