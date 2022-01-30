@@ -7,7 +7,7 @@ import { Container, Header, ListContainer } from "./styles";
 const PARTICLE_DURATION = 4000;
 
 function App() {
-  const { toggleLightMode, theme } = useTheme();
+  const { toggleLightMode, theme, isLightMode } = useTheme();
   const [isExploding, setIsExploding] = useState(false);
   useEffect(() => {
     if (isExploding) {
@@ -33,7 +33,9 @@ function App() {
       <ListContainer>
         <Header>
           <h1>One List To Rule Them All</h1>
-          <div onClick={toggleLightMode}>lol</div>
+          <div style={{ cursor: "pointer" }} onClick={toggleLightMode}>
+            {isLightMode ? "DAY" : "NIGHT"}
+          </div>
         </Header>
         <p>
           A lightweight, no-nonsense, uncomplicated, unordered, local-storaged
