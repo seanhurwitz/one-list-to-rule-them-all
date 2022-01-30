@@ -1,3 +1,4 @@
+import { Delete20 } from "@carbon/icons-react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -8,6 +9,8 @@ const Container = styled.div`
   justify-content: center;
   background: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.color};
+  transition: all 350ms ease;
+  overflow: hidden;
 `;
 
 const ListContainer = styled.div`
@@ -32,6 +35,39 @@ const List = styled.div`
   box-shadow: ${({ theme }) => theme.boxShadow};
   padding: 0.5rem;
   border-radius: 5px;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.color};
+  }
+`;
+
+const ListItem = styled.div`
+  border: 1px solid ${({ theme }) => theme.color};
+  padding: 0.7rem;
+  border-radius: 5px;
+  margin-bottom: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 0.3rem;
+`;
+
+const NewItem = styled.div`
+  border: 1px solid ${({ theme }) => theme.color};
+  padding: 0.7rem;
+  border-radius: 5px;
+  margin-bottom: 0.3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: 0.3rem;
+`;
+
+const ListItemText = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const Header = styled.div`
@@ -45,4 +81,17 @@ const Header = styled.div`
   }
 `;
 
-export { Container, List, ListContainer, Header };
+const Delete = styled(Delete20)`
+  cursor: pointer;
+`;
+
+export {
+  Container,
+  List,
+  ListContainer,
+  Header,
+  ListItem,
+  Delete,
+  ListItemText,
+  NewItem,
+};
