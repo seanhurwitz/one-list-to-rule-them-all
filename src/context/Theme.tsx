@@ -1,12 +1,12 @@
 import React, {
-  useState,
-  FC,
   createContext,
-  Dispatch,
-  SetStateAction,
+  FC,
   useContext,
+  useEffect,
+  useState,
 } from "react";
 import { ThemeProvider as StyleProvider } from "styled-components";
+import { localStorageKeys } from "../config";
 
 const lightTheme = {
   color: "#333333",
@@ -33,7 +33,16 @@ const ThemeContext = createContext<ThemeInterface>({
 });
 
 const ThemeProvider: FC = ({ children }) => {
-  const [isLightMode, setIsLightMode] = useState(true);
+  const [isLightMode, setIsLightMode] = useState(
+    localStorage.getItem(localStorageKeys.IS_LIGHT_MODE) ? true : false
+  );
+  useEffect(() => {
+    localStorage.setItem(
+      localStorageKeys.IS_LIGHT_MODE,
+      isLightMode ? "true" : ""
+    );
+  }, [isLightMode]);
+
   const toggleLightMode = () => setIsLightMode((prev) => !prev);
   return (
     <ThemeContext.Provider value={{ isLightMode, toggleLightMode }}>
