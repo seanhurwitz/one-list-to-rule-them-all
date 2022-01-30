@@ -15,7 +15,7 @@ interface ListProps {
 
 const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
   const savedList = JSON.parse(
-    localStorage.getItem(localStorageKeys.LIST) || '["hello"]'
+    localStorage.getItem(localStorageKeys.LIST) || "[]"
   );
   const [list, setList] = useState<string[]>(savedList);
   useEffect(() => {
@@ -23,12 +23,24 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
   }, [list]);
   const [activeElement, setActiveElement] = useState(-1);
   const [addNewItem, setAddNewItem] = useState(false);
-  const completeNewItem = () => setAddNewItem(false);
+  const completeNewItem = () => {
+    setAddNewItem(false);
+    setActiveElement(-1);
+  };
   return (
     <List>
       {list.map((listItem, itemIndex) => {
         const isActiveElement = activeElement === itemIndex;
-        console.log("isActiveElement", isActiveElement);
+        if (isActiveElement) {
+          return (
+            <ItemInput
+              element={itemIndex}
+              setList={setList}
+              value={listItem}
+              complete={completeNewItem}
+            />
+          );
+        }
         return (
           <ListItem>
             <ListItemText onClick={() => setActiveElement(itemIndex)}>

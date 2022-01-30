@@ -3,7 +3,7 @@ import { ItemInput } from "./styles";
 
 interface ItemInputProps {
   setList: Dispatch<SetStateAction<string[]>>;
-  complete?: () => void;
+  complete: () => void;
   value?: string;
   element?: number;
 }
@@ -12,12 +12,12 @@ const ItemInputComponent: FC<ItemInputProps> = ({
   setList,
   value = "",
   element = -1,
-  complete = () => {},
+  complete,
 }) => {
   const [currentValue, setValue] = useState(value);
 
   const saveValue = () => {
-    if (currentValue) {
+    if (currentValue.trim()) {
       setList((prev) => {
         if (element >= 0) {
           return prev.map((p, idx) => {
@@ -34,7 +34,6 @@ const ItemInputComponent: FC<ItemInputProps> = ({
     complete();
   };
 
-  console.log("value :>> ", value);
   return (
     <ItemInput
       autoFocus
@@ -45,7 +44,6 @@ const ItemInputComponent: FC<ItemInputProps> = ({
         if (e.key === "Enter") {
           saveValue();
         }
-        console.log("e.key", e.key);
       }}
     />
   );

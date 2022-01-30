@@ -13,7 +13,7 @@ const lightTheme: ThemeSchema = {
   background: "#f1f1f1",
   boxShadow: `rgba(0, 0, 0, 0.22) 0px 6px 24px 0px,
   rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;`,
-  explosionColors: ["#414141", "#7b7b7b", "#a5a5a5"],
+  explosionColors: ["#414141", "#7b7b7b", "#4bff28"],
   newItemBackground: "#00000024",
 };
 
