@@ -1,12 +1,6 @@
-import React, {
-  useState,
-  FC,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-} from "react";
-import { localStorageKeys } from "./config";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import ItemInput from "./ItemInput";
+import { localStorageKeys } from "./config";
 import { Delete, List, ListItem, ListItemText, NewItem } from "./styles";
 
 interface ListProps {
@@ -23,8 +17,8 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
   }, [list]);
   const [activeElement, setActiveElement] = useState(-1);
   const [addNewItem, setAddNewItem] = useState(false);
-  const completeNewItem = () => {
-    setAddNewItem(false);
+  const completeNewItem = (blur = false) => {
+    blur && setAddNewItem(false);
     setActiveElement(-1);
   };
   return (
@@ -34,6 +28,7 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
         if (isActiveElement) {
           return (
             <ItemInput
+              key={listItem}
               element={itemIndex}
               setList={setList}
               value={listItem}
@@ -42,7 +37,7 @@ const ListComponent: FC<ListProps> = ({ setIsExploding }) => {
           );
         }
         return (
-          <ListItem>
+          <ListItem key={itemIndex}>
             <ListItemText onClick={() => setActiveElement(itemIndex)}>
               {listItem}
             </ListItemText>

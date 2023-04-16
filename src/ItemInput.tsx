@@ -1,9 +1,9 @@
-import React, { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { ItemInput } from "./styles";
 
 interface ItemInputProps {
   setList: Dispatch<SetStateAction<string[]>>;
-  complete: () => void;
+  complete: (blur: boolean) => void;
   value?: string;
   element?: number;
 }
@@ -16,7 +16,7 @@ const ItemInputComponent: FC<ItemInputProps> = ({
 }) => {
   const [currentValue, setValue] = useState(value);
 
-  const saveValue = () => {
+  const saveValue = (blur = false) => {
     if (currentValue.trim()) {
       setList((prev) => {
         if (element >= 0) {
@@ -31,7 +31,8 @@ const ItemInputComponent: FC<ItemInputProps> = ({
         }
       });
     }
-    complete();
+    setValue("");
+    complete(blur);
   };
 
   return (
@@ -39,7 +40,7 @@ const ItemInputComponent: FC<ItemInputProps> = ({
       autoFocus
       value={currentValue}
       onChange={(e) => setValue(e.target.value)}
-      onBlur={saveValue}
+      onBlur={() => saveValue(true)}
       onKeyPress={(e) => {
         if (e.key === "Enter") {
           saveValue();
